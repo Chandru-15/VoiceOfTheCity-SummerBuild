@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap");
+
+.admin-login-backdrop {
+  --voc-bg: #060a12;
+  --voc-panel: #0d1420;
+  --voc-panel-2: rgba(255, 255, 255, 0.04);
+  --voc-border: rgba(255, 255, 255, 0.08);
+  --voc-text: #eef3f8;
+  --voc-text-dim: #8b97ab;
+  --voc-teal: #2dd4bf;
+  --voc-green: #34e0a1;
+  --voc-red: #f0635f;
+
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(2, 4, 8, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: admin-login-fade 0.18s ease both;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  color: var(--voc-text);
+}
+
+@keyframes admin-login-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admin-login-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--voc-panel);
+  border: 1px solid var(--voc-border);
+  border-radius: 20px;
+  padding: 2rem 1.8rem 1.6rem;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+  animation: admin-login-rise 0.22s ease both;
+}
+
+@keyframes admin-login-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-login-backdrop,
+  .admin-login-modal {
+    animation: none;
+  }
+}
+
+.admin-login-modal * {
+  box-sizing: border-box;
+}
+
+.admin-login-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--voc-border);
+  background: var(--voc-panel-2);
+  color: var(--voc-text);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.admin-login-close:hover {
+  border-color: var(--voc-teal);
+  color: var(--voc-teal);
+}
+
+.admin-login-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.4rem;
+}
+
+.admin-login-lead {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--voc-text-dim);
+  margin: 0 0 1.4rem;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--voc-text-dim);
+}
+
+.admin-login-field .report-input {
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.admin-login-form .report-btn-row {
+  margin-top: 0.5rem;
+  justify-content: flex-end;
+}

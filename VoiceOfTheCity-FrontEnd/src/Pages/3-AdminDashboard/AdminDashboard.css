@@ -1,0 +1,244 @@
+/*
+  Extends list-page styles from ViewReportsUser.css.
+  This file is self-contained — it redeclares the --voc-* tokens on .admin-page
+  so the admin dashboard renders correctly even if it's the first page loaded.
+*/
+
+.admin-page {
+  --voc-bg: #060a12;
+  --voc-panel: #0d1420;
+  --voc-panel-2: rgba(255, 255, 255, 0.04);
+  --voc-panel-3: rgba(255, 255, 255, 0.07);
+  --voc-border: rgba(255, 255, 255, 0.08);
+  --voc-text: #eef3f8;
+  --voc-text-dim: #8b97ab;
+  --voc-teal: #2dd4bf;
+  --voc-green: #34e0a1;
+  --voc-amber: #f5b94d;
+  --voc-orange: #f5894d;
+  --voc-red: #f0635f;
+}
+
+.admin-layout {
+  max-width: 1280px;
+}
+
+/* ---------------- header ---------------- */
+
+.admin-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.admin-dashboard-user {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.admin-dashboard-email {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--voc-text-dim);
+}
+
+/* ---------------- stats strip ---------------- */
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--voc-border);
+  border-radius: 18px;
+  background: var(--voc-panel-2);
+  margin-bottom: 1.6rem;
+}
+
+.admin-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.3rem;
+  border-right: 1px solid var(--voc-border);
+}
+
+.admin-stat:last-child {
+  border-right: none;
+}
+
+.admin-stat-value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--voc-teal), var(--voc-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.admin-stat-label {
+  font-size: 0.74rem;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--voc-text-dim);
+}
+
+/* ---------------- filters ---------------- */
+
+.admin-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* ---------------- status tabs ---------------- */
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  margin-bottom: 1.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.admin-tabs .report-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  white-space: nowrap;
+}
+
+.admin-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 0 0.45rem;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--voc-panel-3);
+  color: var(--voc-text-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 600;
+}
+
+.admin-tabs .report-tab--active .admin-tab-count {
+  background: rgba(4, 38, 31, 0.25);
+  color: #04261f;
+}
+
+/* ---------------- split (list + detail) ---------------- */
+
+.admin-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.admin-split:has(.admin-detail-panel) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+}
+
+.list-grid--admin {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.admin-report-selected {
+  position: relative;
+}
+
+.admin-report-selected::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  box-shadow: 0 0 0 2px var(--voc-teal);
+}
+
+/* ---------------- detail panel ---------------- */
+
+.admin-detail-panel {
+  position: sticky;
+  top: 88px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: var(--voc-panel);
+  border: 1px solid var(--voc-border);
+  border-radius: 18px;
+  padding: 1.4rem;
+}
+
+.admin-detail-panel .list-detail-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--voc-border);
+  background: var(--voc-panel-2);
+  color: var(--voc-text);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-detail-panel .list-detail-close:hover {
+  border-color: var(--voc-teal);
+  color: var(--voc-teal);
+}
+
+/* ---------------- responsive ---------------- */
+
+@media (max-width: 1080px) {
+  .admin-split:has(.admin-detail-panel) {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-detail-panel {
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .admin-stat:nth-child(odd) {
+    border-right: 1px solid var(--voc-border);
+  }
+
+  .admin-stat:nth-child(even) {
+    border-right: none;
+  }
+
+  .admin-dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-dashboard-user {
+    justify-content: space-between;
+  }
+}
